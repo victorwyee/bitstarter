@@ -56,7 +56,7 @@ var checkHtml = function(html, checksfile) {
 var checkFileContent = function(htmlfile, checksfile) {
     var fileContent = fs.readFileSync(htmlfile);
     var checkFile = checkHtml(fileContent, checksfile);
-    var outJson = JSON.stringify(checkJson, null, 4);
+    var outJson = JSON.stringify(checkFile, null, 4);
     console.log(outJson);
 };
 
@@ -85,8 +85,10 @@ if(require.main == module) {
         .option('-u, --url <url>', 'URL to check')
         .parse(process.argv);
     if (typeof program.url != 'undefined') {
-      var checkJson = checkUrlContent(program.url, program.checks);    
+      console.log('Checking URL: ' + program.url);
+      var checkJson = checkUrlContent(program.url, program.checks);
     } else {
+    console.log('Checking file: ' + program.file);
       var checkJson = checkFileContent(program.file, program.checks);
     }
 } else {
