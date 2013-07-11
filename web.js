@@ -5,6 +5,8 @@ var app = express.createServer(express.logger());
 var index = fs.readFileSync('index.html');
 
 app.get('/', function(request, response) {
+  console.log(index);
+  console.log(index.toString());
   response.send(index.toString('utf-8'));
 });
 
